@@ -1,36 +1,50 @@
 import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, CartesianGrid } from 'recharts';
 import type { NextPage } from 'next'
+import { useContext } from 'react';
 import Head from 'next/head'
 import Image from 'next/image';
 
+import { PenroseContext } from '../context/PenroseContext';
+import ConnectWallet from '../components/Connect';
+import { CrispContext } from '../context/CrsipContext';
+
 const data = [
   {
-    "name": "239083271",
-    "price": 100
+    blockNumber: 239083271,
+    tokenId: 1000,
+    price: 100
   },
   {
-    "name": "239083272",
-    "price": 80
+    blockNumber: 239083272,
+    tokenId: 1000,
+    price: 80
   },
   {
-    "name": "239083273",
-    "price": 60
+    blockNumber: 239083273,
+    tokenId: 1000,
+    price: 60
   },
   {
-    "name": "239083274",
-    "price": 40
+    blockNumber: 239083274,
+    tokenId: 1000,
+    price: 40
   },
   {
-    "name": "239083275",
-    "price": 70
+    blockNumber: 239083275,
+    tokenId: 1000,
+    price: 70
   },
   {
-    "name": "239083276",
-    "price": 30
+    blockNumber: 239083276,
+    tokenId: 1000,
+    price: 30
   },
 ];
 
 const Home: NextPage = () => {
+  const PenroseData = useContext(PenroseContext)
+  const CrispData = useContext(CrispContext)
+
   return (
     <div className="">
       <Head>
@@ -42,7 +56,7 @@ const Home: NextPage = () => {
       <header>
         <div className="flex justify-between p-3">
           <div>penrose</div>
-          <button>connect wallet</button>
+          <ConnectWallet />
         </div>
       </header>
 
@@ -76,7 +90,7 @@ const Home: NextPage = () => {
           <div className="mb-5">
             <ResponsiveContainer width="100%" height={400}>
               <LineChart
-                data={data}
+                data={CrispData ? CrispData.priceHist : data}
                 margin={{
                   top: 5,
                   right: 20,
@@ -85,7 +99,7 @@ const Home: NextPage = () => {
                 }}>
                 <Line type="monotone" dataKey="price" stroke="#8884d8" />
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
+                <XAxis dataKey="blockNumber" />
                 <YAxis />
                 <Tooltip labelStyle={{ color: "black" }} />
                 <Legend />
@@ -96,22 +110,22 @@ const Home: NextPage = () => {
           <div className='grid grid-cols-2 gap-3'>
             <div className="p-5">
               <h4>Recently Minted</h4>
-              <Image width={300} height={300} layout="responsive" objectFit="cover" src="/demo.png" />
-              <p className='mt-3 text-center'>PENROSE #1000</p>
+              <Image width={300} height={300} layout="responsive" objectFit="cover" src={PenroseData ? PenroseData.lastTokenURI : "/demo.png"} />
+              <p className='mt-3 text-center'>PENROSE #{PenroseData ? PenroseData.lastTokenId : "-"}</p>
             </div>
             <div className='p-5'>
               <h4>Statistics</h4>
 
               <div>remaining supply:</div>
-              <p> 1048/2048</p>
+              <p> {PenroseData ? `${PenroseData.maxSupply - PenroseData.totalSupply} / ${PenroseData.maxSupply}` : "-"}</p>
               <div>last purchase price:</div>
-              <p> 0.1E</p>
+              <p> {CrispData ? CrispData.lastPrice : "-"}E</p>
               <div>target ems:</div>
-              <p> 100</p>
-              <div>current token id:</div>
-              <p>1001</p>
+              <p> {CrispData ? CrispData.targetEms : "-"}</p>
+              <div>next token id:</div>
+              <p>{PenroseData ? PenroseData.lastTokenId + 1 : "-"}</p>
               <div>current CRISP price:</div>
-              <p>0.14E</p>
+              <p>{CrispData ? CrispData.currentPrice : "-"}E</p>
 
               <div className="text-center h-10 outline p-2 mt-3">
                 MINT
