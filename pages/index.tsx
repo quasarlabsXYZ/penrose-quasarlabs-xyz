@@ -51,7 +51,7 @@ const Home: NextPage = () => {
         <section className="introduction">
           <h1>PENROSE</h1>
           <p>
-            Penrose is the first fully on-chain generative arts collection on Starknet built by the <a href="https://www.quasarlabs.xyz">Quasar Labs</a>. The idea is orignated from the legendary <a href="https://www.larvalabs.com/autoglyphs#:~:text=Autoglyphs%20are%20the%20first%20%E2%80%9Con,running%20on%20the%20Ethereum%20blockchain.">Autoglyph</a>.
+            Penrose is the first fully on-chain generative arts experiment on Starknet built by the <a href="https://www.quasarlabs.xyz">Quasar Labs</a>. The idea is orignated from the legendary <a href="https://www.larvalabs.com/autoglyphs#:~:text=Autoglyphs%20are%20the%20first%20%E2%80%9Con,running%20on%20the%20Ethereum%20blockchain.">Autoglyph</a>.
           </p>
           <p>
             Each Penrose is a unique artwork that is generated on-chain and bootstraped using the <a href="https://www.paradigm.xyz/2022/01/constant-rate-issuance-sales-protocol">Constant Rate Issuance Sales Protocol (CRISP)</a> mechanism designed by the paradigm research team.
@@ -59,12 +59,15 @@ const Home: NextPage = () => {
           <p>
             All implemented in <a href="https://www.cairo-lang.org/docs/">Cairo</a> and <span className="bg-yellow-400 text-black">starkpilled</span>. :)
           </p>
+          <p className="text-xs text-gray-500 mt-5">
+            * Noted that Penrose is a highly experimental project and all operations are processed on-chain, there is no way to reverse or undo any transaction. Please be cautious and do your own research before making any operation or financial decision.
+          </p>
         </section>
 
         <section className="mint">
           <h2>MINT NOW</h2>
           <p>
-            Penrose is the first NFT collection adopting the CRISP pricing mechanism, a pricing mechanism that aims to sell NFTs at a targeted rate over time.
+            Penrose is the first NFT collection adopting the CRISP pricing mechanism, a pricing mechanism that aims to sell NFTs at a targeted rate over time. Join us in this experiment to test out this awesome primitive!
           </p>
           <p>
             Check out our implementation in Cairo <a href="https://github.com/08351ty/CRISP-cairo">here</a>.
@@ -143,7 +146,7 @@ const Home: NextPage = () => {
             </div>
 
             <div>
-              <p className='text-white italic'>Do you <span className='text-orange-300'>felt</span> the magic, anon?</p>
+              <p className='text-white italic'>Can you <span className='text-orange-300'>felt</span> the magic, anon?</p>
             </div>
           </div>
 
@@ -154,7 +157,7 @@ const Home: NextPage = () => {
           <h3>(code snipet with docs here)</h3>
         </section>
 
-        <section className="why-penrose">
+        <section className="more">
           <h2>MORE</h2>
           <div className='grid grid-cols-2'>
             <li><a href="https://www.quasarlabs.xyz">Quasar Labs</a></li>
@@ -168,7 +171,7 @@ const Home: NextPage = () => {
       </main>
 
       <footer className="pt-20">
-        <div className="container mx-auto pt-6 text-center text-xs">
+        <div className="container mx-auto pt-6 text-center p-5">
           © 2022 Quasar Labs. All rights reserved.
         </div>
       </footer>
