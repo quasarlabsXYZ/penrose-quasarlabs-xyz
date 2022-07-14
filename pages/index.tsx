@@ -65,28 +65,28 @@ const Home: NextPage = () => {
         <section className="introduction">
           <h1>PENROSE</h1>
           <p>
-            Penrose is the first fully on-chain generative arts experiment on Starknet built by the <a href="https://www.quasarlabs.xyz">Quasar Labs</a>. The idea is orignated from the legendary <a href="https://www.larvalabs.com/autoglyphs#:~:text=Autoglyphs%20are%20the%20first%20%E2%80%9Con,running%20on%20the%20Ethereum%20blockchain.">Autoglyph</a>.
+            Penrose is the first fully on-chain generative art experiment on Starknet built by <a href="https://www.quasarlabs.xyz">Quasar Labs</a>. The idea is inspired by the legendary <a href="https://www.larvalabs.com/autoglyphs#:~:text=Autoglyphs%20are%20the%20first%20%E2%80%9Con,running%20on%20the%20Ethereum%20blockchain.">Autoglyphs</a>.
           </p>
           <p>
-            Each Penrose is a unique artwork that is generated on-chain and bootstraped using the <a href="https://www.paradigm.xyz/2022/01/constant-rate-issuance-sales-protocol">Constant Rate Issuance Sales Protocol (CRISP)</a> mechanism designed by the paradigm research team.
+            Each Penrose is a unique artwork generated on-chain and bootstrapped using the <a href="https://www.paradigm.xyz/2022/01/constant-rate-issuance-sales-protocol">Constant Rate Issuance Sales Protocol (CRISP)</a> mechanism designed by the paradigm research team.
           </p>
           <p>
             All implemented in <a href="https://www.cairo-lang.org/docs/">Cairo</a> and <span className="bg-yellow-400 text-black">starkpilled</span>. :)
           </p>
           <p className="text-xs text-gray-500 mt-5">
-            * Noted that Penrose is a highly experimental project and all operations are processed on-chain, there is no way to reverse or undo any transaction. Please be cautious and do your own research before making any operation or financial decision.
+            * Penrose is a highly experimental project and all operations are processed on-chain, there is no way to reverse or undo any transaction. Please be cautious and do your own research before making any operation or financial decision.
           </p>
         </section>
 
         <section className="mint">
           <h2>MINT NOW</h2>
           <p>
-            Penrose is the first NFT collection adopting the CRISP pricing mechanism, a pricing mechanism that aims to sell NFTs at a targeted rate over time. Join us in this experiment to test out this awesome primitive!
+            Penrose is the first NFT collection adopting CRISP, a pricing mechanism that aims to sell NFTs at a targeted rate over time. Join us in this experiment to test out this awesome primitive!
           </p>
           <p>
             Check out our implementation in Cairo <a href="https://github.com/08351ty/CRISP-cairo">here</a>.
           </p>
-          <h3 className="text-center mt-10">CRISP PRICE HIST</h3>
+          <h3 className="text-center mt-10">CRISP PRICE HISTORY</h3>
           <div className="mb-5">
             <ResponsiveContainer width="100%" height={400}>
               <LineChart
@@ -140,27 +140,27 @@ const Home: NextPage = () => {
 
           <div className='grid gap-5'>
             <div>
-              <h3>first on starknet</h3>
-              <p>StarkNet is a permissionless decentralized ZK-Rollup operating as an L2 network over Ethereum powered by Starkware. The ZK-STARKS cryptography allows the heavy computations to be processed by a trustless setup and be verified on chain, essentially scaling up the capacity of the Ethereum layer 1. <a href="https://starknet.io/what-is-starknet/">(read more)</a></p>
+              <h3>First on Starknet</h3>
+              <p>StarkNet is a permissionless, decentralized ZK-Rollup operating as an L2 network over Ethereum powered by Starkware. ZK-STARK cryptography allows heavy computation to be processed by a trustless setup and verified on-chain, solving Ethereum L1's scaling issues. <a href="https://starknet.io/what-is-starknet/">(Read more)</a></p>
             </div>
 
             <div>
-              <h3>fully on-chain</h3>
-              <p>Penrose is the first fully on-chain generative arts on Starknet. Everything - from generation to storage - is FULLY on-chain, no API, no IPFS, only blockchain. All powered by the <a href="https://twitter.com/apolynya/status/1452181305790275589">amazing ZK magic of Starknet</a>.</p>
+              <h3>Fully on-chain</h3>
+              <p>Penrose is the first fully on-chain generative art NFT on Starknet. Everything - from generation to storage - is FULLY on-chain, no API, no IPFS, only blockchain. We take advantage of the cheap compute inherent in Starknet's architecture to generate randomized, complex images; all powered by the <a href="https://twitter.com/apolynya/status/1452181305790275589">amazing ZK magic of Starknet</a>.</p>
             </div>
 
             <div>
-              <h3>first CRISP</h3>
-              <p>Penose is the first NFT collection adopting the <a href="https://www.paradigm.xyz/2022/01/constant-rate-issuance-sales-protocol">CRISP pricing mechanism</a> introduced by the Paradigm research team, a uique auction design that allows a collection to be distributed fairly at its fair price.</p>
+              <h3>First CRISP</h3>
+              <p>Penrose is the first NFT collection adopting the <a href="https://www.paradigm.xyz/2022/01/constant-rate-issuance-sales-protocol">CRISP pricing mechanism</a> conceptualized by the Paradigm research team, a unique auction design that allows a collection to be distributed at its fair price.</p>
             </div>
 
             <div>
-              <h3>opensource primitives</h3>
-              <p>Built by the <a href="https://www.quasarlabs.xyz">Quasar Labs</a>, Penrose is the first implementation of on-chain generative art and CRISP pricing mechanism in Cario and on Starknet. Everything is <a href="https://github.com/QuasarLabsXYZ">fully opensourced</a> for the builders and reserachers exploring the undiscovered potentials of the awesome Starknet.</p>
+              <h3>Open-source Primitives</h3>
+              <p>Built by <a href="https://www.quasarlabs.xyz">Quasar Labs</a>, Penrose is the first implementation of on-chain generative art and CRISP pricing mechanism in Cairo and on Starknet. Everything is <a href="https://github.com/QuasarLabsXYZ">fully open-sourced</a> for the builders and researchers exploring the undiscovered potentials of the awesome Starknet.</p>
             </div>
 
             <div>
-              <p className='text-white italic'>Can you <span className='text-orange-300'>felt</span> the magic, anon?</p>
+              <p className='text-white italic'>Can you <span className='text-orange-300'>feel</span> the magic, anon?</p>
             </div>
           </div>
 
@@ -168,7 +168,7 @@ const Home: NextPage = () => {
 
         <section className="how-penrose">
           <h2>HOW PENROSE</h2>
-          <h3>(code snipet with docs here)</h3>
+          <h3>(code snippet with docs here)</h3>
         </section>
 
         <section className="more">
