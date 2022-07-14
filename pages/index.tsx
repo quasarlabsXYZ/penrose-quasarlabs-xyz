@@ -141,12 +141,12 @@ const Home: NextPage = () => {
           <div className='grid gap-5'>
             <div>
               <h3>First on Starknet</h3>
-              <p>StarkNet is a permissionless, decentralized ZK-Rollup operating as an L2 network over Ethereum powered by Starkware. ZK-STARK cryptography allows heavy computation to be processed by a trustless setup and verified on-chain, solving Ethereum L1's scaling issues. <a href="https://starknet.io/what-is-starknet/">(Read more)</a></p>
+              <p>StarkNet is a permissionless, decentralized ZK-Rollup operating as an L2 network over Ethereum powered by Starkware. ZK-STARK cryptography allows heavy computation to be processed by a trustless setup and verified on-chain, solving Ethereum&apos;s scaling issues. <a href="https://starknet.io/what-is-starknet/">(Read more)</a></p>
             </div>
 
             <div>
               <h3>Fully on-chain</h3>
-              <p>Penrose is the first fully on-chain generative art NFT on Starknet. Everything - from generation to storage - is FULLY on-chain, no API, no IPFS, only blockchain. We take advantage of the cheap compute inherent in Starknet's architecture to generate randomized, complex images; all powered by the <a href="https://twitter.com/apolynya/status/1452181305790275589">amazing ZK magic of Starknet</a>.</p>
+              <p>Penrose is the first fully on-chain generative art NFT on Starknet. Everything - from generation to storage - is FULLY on-chain, no API, no IPFS, only blockchain. We take advantage of the cheap compute inherent in Starknet&apos;s architecture to generate randomized, complex images; all powered by the <a href="https://twitter.com/apolynya/status/1452181305790275589">amazing ZK magic of Starknet</a>.</p>
             </div>
 
             <div>
