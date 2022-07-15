@@ -8,6 +8,7 @@ import ConnectWallet from '../components/Connect';
 import { CrispContext } from '../context/CrsipContext';
 import { ActionPanel } from '../components/ActionPanel';
 import { CrispChart } from '../components/CrispChart';
+import { CodeSnippet } from '../components/CodeSnippet';
 
 const Home: NextPage = () => {
   const PenroseData = useContext(PenroseContext)
@@ -93,7 +94,7 @@ const Home: NextPage = () => {
 
         <section className="how-penrose">
           <h2>HOW PENROSE</h2>
-          <h3>(code snippet with docs here)</h3>
+          <CodeSnippet />
         </section>
 
         <section className="more">
