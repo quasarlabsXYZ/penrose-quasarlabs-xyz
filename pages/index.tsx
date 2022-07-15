@@ -1,4 +1,3 @@
-import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, CartesianGrid } from 'recharts';
 import type { NextPage } from 'next'
 import { useContext } from 'react';
 import Head from 'next/head'
@@ -7,39 +6,8 @@ import Image from 'next/image';
 import { PenroseContext } from '../context/PenroseContext';
 import ConnectWallet from '../components/Connect';
 import { CrispContext } from '../context/CrsipContext';
-
-const data = [
-  {
-    blockNumber: 239083271,
-    tokenId: 1000,
-    price: 100
-  },
-  {
-    blockNumber: 239083272,
-    tokenId: 1000,
-    price: 80
-  },
-  {
-    blockNumber: 239083273,
-    tokenId: 1000,
-    price: 60
-  },
-  {
-    blockNumber: 239083274,
-    tokenId: 1000,
-    price: 40
-  },
-  {
-    blockNumber: 239083275,
-    tokenId: 1000,
-    price: 70
-  },
-  {
-    blockNumber: 239083276,
-    tokenId: 1000,
-    price: 30
-  },
-];
+import { ActionPanel } from '../components/ActionPanel';
+import { CrispChart } from '../components/CrispChart';
 
 const Home: NextPage = () => {
   const PenroseData = useContext(PenroseContext)
@@ -86,53 +54,10 @@ const Home: NextPage = () => {
           <p>
             Check out our implementation in Cairo <a href="https://github.com/08351ty/CRISP-cairo">here</a>.
           </p>
-          <h3 className="text-center mt-10">CRISP PRICE HISTORY</h3>
-          <div className="mb-5">
-            <ResponsiveContainer width="100%" height={400}>
-              <LineChart
-                data={CrispData ? CrispData.priceHist : data}
-                margin={{
-                  top: 5,
-                  right: 20,
-                  left: 0,
-                  bottom: 0,
-                }}>
-                <Line type="monotone" dataKey="price" stroke="#8884d8" />
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="blockNumber" />
-                <YAxis />
-                <Tooltip labelStyle={{ color: "black" }} />
-                <Legend />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
 
-          <div className='grid grid-cols-2 gap-3'>
-            <div className="p-5">
-              <h4>Recently Minted</h4>
-              <Image width={300} height={300} layout="responsive" objectFit="cover" src={PenroseData ? PenroseData.lastTokenURI : "/demo.png"} />
-              <p className='mt-3 text-center'>PENROSE #{PenroseData ? PenroseData.lastTokenId : "-"}</p>
-            </div>
-            <div className='p-5'>
-              <h4>Statistics</h4>
+          <CrispChart />
+          <ActionPanel />
 
-              <div>remaining supply:</div>
-              <p> {PenroseData ? `${PenroseData.maxSupply - PenroseData.totalSupply} / ${PenroseData.maxSupply}` : "-"}</p>
-              <div>last purchase price:</div>
-              <p> {CrispData ? CrispData.lastPrice : "-"}E</p>
-              <div>target ems:</div>
-              <p> {CrispData ? CrispData.targetEms : "-"}</p>
-              <div>next token id:</div>
-              <p>{PenroseData ? PenroseData.lastTokenId + 1 : "-"}</p>
-              <div>current CRISP price:</div>
-              <p>{CrispData ? CrispData.currentPrice : "-"}E</p>
-
-              <div className="text-center h-10 outline p-2 mt-3">
-                MINT
-              </div>
-
-            </div>
-          </div>
         </section>
 
         <section className="why-penrose">
@@ -160,7 +85,7 @@ const Home: NextPage = () => {
             </div>
 
             <div>
-              <p className='text-white italic'>Can you <span className='text-orange-300'>feel</span> the magic, anon?</p>
+              <p className='text-white italic'>Can you <span className='text-orange-300 bg-gray-700 rounded-md'>:felt*</span> the magic, anon?</p>
             </div>
           </div>
 
