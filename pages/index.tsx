@@ -1,18 +1,12 @@
-import type { NextPage } from 'next'
-import { useContext } from 'react';
-import Head from 'next/head'
-import Image from 'next/image';
+import type { NextPage } from 'next';
+import Head from 'next/head';
 
-import { PenroseContext } from '../context/PenroseContext';
-import ConnectWallet from '../components/Connect';
-import { CrispContext } from '../context/CrsipContext';
 import { ActionPanel } from '../components/ActionPanel';
-import { CrispChart } from '../components/CrispChart';
 import { CodeSnippet } from '../components/CodeSnippet';
+import ConnectWallet from '../components/Connect';
+import { CrispChart } from '../components/CrispChart';
 
 const Home: NextPage = () => {
-  const PenroseData = useContext(PenroseContext)
-  const CrispData = useContext(CrispContext)
 
   return (
     <div className="">

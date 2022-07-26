@@ -1,8 +1,7 @@
 import { getInstalledInjectedConnectors, StarknetProvider } from '@starknet-react/core'
-import PenroseProvider from '../context/PenroseContext'
-import CrispProvider from '../context/CrsipContext'
 import type { AppProps } from 'next/app'
 
+import DataProvider from '../context/DataContext'
 import "../styles/globals.css"
 import "../styles/selection.css"
 
@@ -11,11 +10,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <StarknetProvider connectors={connectors} autoConnect>
-      <PenroseProvider>
-        <CrispProvider>
-          <Component {...pageProps} />
-        </CrispProvider>
-      </PenroseProvider>
+      <DataProvider>
+        <Component {...pageProps} />
+      </DataProvider>
     </StarknetProvider>
   )
 }

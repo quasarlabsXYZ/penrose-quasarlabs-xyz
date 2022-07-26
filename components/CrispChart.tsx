@@ -1,12 +1,12 @@
-import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, CartesianGrid } from 'recharts';
 import { useContext } from 'react';
+import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
-import { CrispContext } from '../context/CrsipContext';
+import { DataContext } from '../context/DataContext';
 
 export const CrispChart = () => {
-    const CrispData = useContext(CrispContext);
+    const Data = useContext(DataContext);
 
-    if (!CrispData) { // TODO
+    if (!Data) { // TODO
         return (
             <>
                 <h3 className="text-center mt-10">CRISP PRICE HISTORY</h3>
@@ -20,7 +20,7 @@ export const CrispChart = () => {
             <div className="mb-5">
                 <ResponsiveContainer width="100%" height={400}>
                     <LineChart
-                        data={CrispData.priceHist}
+                        data={Data.priceHist}
                         margin={{
                             top: 5,
                             right: 20,
