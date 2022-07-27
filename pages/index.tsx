@@ -1,10 +1,11 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
-import { ActionPanel } from '../components/ActionPanel';
 import { CodeSnippet } from '../components/CodeSnippet';
 import ConnectWallet from '../components/Connect';
 import { CrispChart } from '../components/CrispChart';
+import { RecentMint } from '../components/RecentMint';
+import { StatsAndMint } from '../components/StatsAndMint';
 
 const Home: NextPage = () => {
 
@@ -17,7 +18,7 @@ const Home: NextPage = () => {
       </Head>
 
       <header>
-        <div className="flex justify-between p-3">
+        <div className="flex justify-between p-3 flex-col lg:flex-row">
           <div>penrose</div>
           <ConnectWallet />
         </div>
@@ -51,7 +52,11 @@ const Home: NextPage = () => {
           </p>
 
           <CrispChart />
-          <ActionPanel />
+
+          <div className='grid gap-3 grid-flow-row lg:grid-flow-col'>
+            <RecentMint />
+            <StatsAndMint />
+          </div>
 
         </section>
 
