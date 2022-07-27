@@ -6,21 +6,13 @@ import { DataContext } from '../context/DataContext';
 export const CrispChart = () => {
     const Data = useContext(DataContext);
 
-    if (!Data) { // TODO
-        return (
-            <>
-                <h3 className="text-center mt-10">CRISP PRICE HISTORY</h3>
-            </>
-        )
-    }
-
     return (
-        <>
+        <div className='h-130 p-1'>
             <h3 className="text-center mt-10">CRISP PRICE HISTORY</h3>
-            <div className="mb-5">
+            <div className="mb-5 h-120">
                 <ResponsiveContainer width="100%" height={400}>
                     <LineChart
-                        data={Data.priceHist}
+                        data={Data ? Data.priceHist : undefined} // TODO: change to use an API
                         margin={{
                             top: 5,
                             right: 20,
@@ -36,6 +28,6 @@ export const CrispChart = () => {
                     </LineChart>
                 </ResponsiveContainer>
             </div>
-        </>
+        </div>
     )
 }
