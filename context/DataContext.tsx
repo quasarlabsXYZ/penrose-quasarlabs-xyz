@@ -48,7 +48,7 @@ interface DataInterface {
   totalSupply: number,
   numToken: number,
   lastTokenId: number,
-  lastTokenURI: any[],
+  lastTokenURI: { name: string, attribute: { scheme: string, color: string }, image: string },
   lastPrice: number,
   currentPrice: number,
   targetEms: number,
@@ -71,12 +71,16 @@ function hexToString(hexString: string) {
 }
 
 export function decodeTokenURI(felts: any) {
-  let resstr = "";
+  let results = "";
   for (let felt of felts.tokenURI) {
-    resstr += hexToString(felt.toString(16))
+    results += hexToString(felt.toString(16))
   }
-  console.log(resstr);
-  return resstr;
+  results = results
+    .replace('xmlns="', 'xmlns=\\"')
+    // .replace('</svg>"', '</svg>\\"')
+    .replace("data:application/json;charset=utf-8,", "")
+
+  return JSON.parse(results);
 }
 
 export const DataContext = createContext<DataInterface | undefined>(undefined)

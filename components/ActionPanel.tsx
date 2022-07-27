@@ -10,12 +10,19 @@ export const ActionPanel = () => {
     const onMintClick = async () => {
         console.log("Minting...")
     }
-
+    console.log(Data ? Data.lastTokenURI.image : null)
     return (
         <div className='grid grid-cols-2 gap-3'>
             <div className="p-5">
                 <h4>Recently Minted</h4>
-                <Image width={300} height={300} layout="responsive" objectFit="cover" src={Data ? "/demo.png" : "/demo.png"} />
+                <Image
+                    alt="recently-minted"
+                    width={300}
+                    height={300}
+                    layout="responsive"
+                    objectFit="cover"
+                    src={Data ? "/demo.png" : "/demo.png"}
+                />
                 <p className='mt-3 text-center'>PENROSE #{Data ? Data.lastTokenId : "-"}</p>
             </div>
             <div className='p-5'>
