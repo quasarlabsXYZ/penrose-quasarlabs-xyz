@@ -3,6 +3,7 @@ import { createContext, useEffect, useState } from "react";
 import { Abi } from "starknet";
 import { bnToUint256 } from "starknet/dist/utils/uint256";
 import penroseAbi from "../abi/penrose.json";
+import { PENROSE_CONTRACT_ADDRESS } from "../constants";
 
 interface DataInterface {
   totalSupply: number,
@@ -48,7 +49,7 @@ export default function DataProvider({ children }: any) {
   const [data, setData] = useState<DataInterface | undefined>(undefined)
   const { contract } = useContract({
     abi: penroseAbi as Abi,
-    address: process.env.NEXT_PUBLIC_PENROSE_CONTRACT_ADDRESS
+    address: PENROSE_CONTRACT_ADDRESS
   });
 
   useEffect(() => {

@@ -2,6 +2,7 @@ import { useContract, useStarknet, useStarknetInvoke } from "@starknet-react/cor
 import { useContext, useEffect, useMemo } from "react";
 import { Abi } from "starknet";
 import penroseAbi from "../abi/penrose.json";
+import { PENROSE_CONTRACT_ADDRESS } from "../constants";
 import { DataContext } from "../context/DataContext";
 
 
@@ -14,7 +15,7 @@ export const StatsAndMint = () => {
   const { account } = useStarknet();
   const { contract } = useContract({
     abi: penroseAbi as Abi,
-    address: process.env.NEXT_PUBLIC_PENROSE_CONTRACT_ADDRESS
+    address: PENROSE_CONTRACT_ADDRESS
   });
 
   const { loading, error, invoke } = useStarknetInvoke({
@@ -30,10 +31,11 @@ export const StatsAndMint = () => {
   const onMintClick = async () => {
     if (account) {
       const message = `Minting Penrose to ${account}`;
-      await invoke({
+      const tx = await invoke({
         args: [],
         metadata: { method: 'mint', message }
       });
+      console.log(tx, message, error);
     }
   }
 
@@ -93,7 +95,7 @@ export const StatsAndMint = () => {
         onClick={onMintClick}
         disabled={mintButtonDisabled}
       >
-        {!mintButtonDisabled ? account ? "Mint" : "Wallet not connected" : "Loading..."}
+        {account ? Data ? "Mint" : loading ? "Fetching..." : "Loading..." : "Connect Wallet"}
       </button>
 
     </div>
