@@ -23,7 +23,7 @@ export const RecentMint = () => {
         height={300}
         layout="responsive"
         objectFit="cover"
-        src={Data ? processDataImage(Data.lastTokenURI.image) : "/demo.png"}
+        src={Data ? processDataImage(Data.lastTokenURI.image) : "/loading.svg"}
       />
       <p className='mt-3 text-center'>PENROSE #{Data ? Data.lastTokenId : "-"}</p>
     </div>

@@ -8,7 +8,6 @@ export const StatsAndMint = () => {
   const onMintClick = async () => {
     console.log("Minting...")
   }
-  console.log(Data ? Data.lastTokenURI.image : null)
   return (
     <div className='p-5'>
       <h4>Statistics</h4>
