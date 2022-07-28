@@ -14,8 +14,6 @@ export const processDataImage = (image: string) => {
 export const RecentMint = () => {
   const Data = useContext(DataContext)
 
-  console.log(Data ? Data.lastTokenURI.image.replace("\\\"", "\"") : null)
-  console.log(Data ? processDataImage(Data.lastTokenURI.image) : null)
   return (
     <div className="p-5">
       <h4>Recently Minted</h4>

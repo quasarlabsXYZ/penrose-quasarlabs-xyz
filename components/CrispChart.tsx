@@ -1,10 +1,16 @@
-import { useContext } from 'react';
+import { useEffect, useState } from 'react';
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
-import { DataContext } from '../context/DataContext';
 
 export const CrispChart = () => {
-    const Data = useContext(DataContext);
+    const [priceHistory, setPriceHistory] = useState(undefined);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setPriceHistory(await fetch("./api/priceHistory").then((res) => res.json()));
+        }
+        fetchData();
+    })
 
     return (
         <div className='h-130 p-1'>
@@ -12,7 +18,7 @@ export const CrispChart = () => {
             <div className="mb-5 h-120">
                 <ResponsiveContainer width="100%" height={400}>
                     <LineChart
-                        data={Data ? Data.priceHist : undefined} // TODO: change to use an API
+                        data={priceHistory}
                         margin={{
                             top: 5,
                             right: 20,

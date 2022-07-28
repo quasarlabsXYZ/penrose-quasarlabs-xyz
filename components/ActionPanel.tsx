@@ -10,7 +10,6 @@ export const ActionPanel = () => {
     const onMintClick = async () => {
         console.log("Minting...")
     }
-    console.log(Data ? Data.lastTokenURI.image : null)
     return (
         <div className='grid grid-cols-2 gap-3'>
             <div className="p-5">
