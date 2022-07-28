@@ -6,19 +6,11 @@ import penroseAbi from "../abi/penrose.json";
 import { PENROSE_CONTRACT_ADDRESS } from "../constants";
 
 interface DataInterface {
-  totalSupply: number,
   numToken: number,
   lastTokenId: number,
   lastTokenURI: { name: string, attribute: { scheme: string, color: string }, image: string },
   lastPrice: number,
   currentPrice: number,
-  targetEms: number,
-  nextPurchaseStartingPrice: number,
-  lastPurchaseBlock: number,
-  nextPurchaseStartingEms: number,
-  priceSpeed: number,
-  priceHalflife: number,
-  saleHalflife: number,
 }
 
 function hexToString(hexString: string) {
@@ -60,19 +52,11 @@ export default function DataProvider({ children }: any) {
       // divided by 10 ** 18 for wei
       const numToken = Number((await contract.getNumToken()).toString());
       const contractData = {
-        totalSupply: Number((await contract.getTotalSupply()).toString()),
         numToken: numToken,
         lastTokenId: numToken,
         lastTokenURI: decodeTokenURI(await contract.tokenURI(bnToUint256(numToken))),
         lastPrice: Number((await contract.getLastPurchasePrice()).toString()) / 2 ** 61 / 10 ** 18,
         currentPrice: Number((await contract.getQuote()).toString()) / 2 ** 61 / 10 ** 18,
-        targetEms: Number((await contract.getTargetEMS()).toString()) / 2 ** 61,
-        nextPurchaseStartingPrice: Number((await contract.getNextPurchaseStartingPrice()).toString()) / 10 ** 18,
-        lastPurchaseBlock: Number((await contract.getLastPurchaseBlock()).toString()),
-        nextPurchaseStartingEms: Number((await contract.getNextPurchaseStartingEMS()).toString()),
-        priceSpeed: Number((await contract.getPriceSpeed()).toString()) / 2 ** 61,
-        priceHalflife: Number((await contract.getPriceHalfLife()).toString()),
-        saleHalflife: Number((await contract.getSaleHalfLife()).toString())
       }
       setData(contractData);
     }

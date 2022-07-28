@@ -1,13 +1,17 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { Contract } from 'starknet';
 
+import { Abi } from "starknet";
+import penroseAbi from "../abi/penrose.json";
 import { CodeSnippet } from '../components/CodeSnippet';
 import ConnectWallet from '../components/Connect';
 import { CrispChart } from '../components/CrispChart';
 import { RecentMint } from '../components/RecentMint';
 import { StatsAndMint } from '../components/StatsAndMint';
+import { PENROSE_CONTRACT_ADDRESS } from "../constants";
 
-const Home: NextPage = () => {
+const Home: NextPage = (props) => {
 
   return (
     <div className="">
@@ -55,7 +59,7 @@ const Home: NextPage = () => {
 
           <div className='grid gap-3 grid-cols-1 lg:grid-cols-2'>
             <RecentMint />
-            <StatsAndMint />
+            <StatsAndMint params={props} />
           </div>
 
         </section>
@@ -116,6 +120,20 @@ const Home: NextPage = () => {
       </footer>
     </div >
   )
+}
+
+export const getStaticProps = async () => {
+  const contract = new Contract(penroseAbi as Abi, PENROSE_CONTRACT_ADDRESS)
+
+  return {
+    "props": {
+      totalSupply: Number((await contract.getTotalSupply()).toString()),
+      targetEms: Number((await contract.getTargetEMS()).toString()) / 2 ** 61,
+      priceSpeed: Number((await contract.getPriceSpeed()).toString()) / 2 ** 61,
+      priceHalflife: Number((await contract.getPriceHalfLife()).toString()),
+      saleHalflife: Number((await contract.getSaleHalfLife()).toString())
+    }
+  }
 }
 
 export default Home

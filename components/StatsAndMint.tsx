@@ -10,7 +10,9 @@ export const formatEthPrice = (price: number): string => {
   return `${price.toFixed(4)} Ξ`;
 }
 
-export const StatsAndMint = () => {
+export const StatsAndMint = (props: any) => {
+  const { totalSupply, targetEms, priceSpeed, priceHalflife, saleHalflife } = props.params;
+
   const Data = useContext(DataContext)
   const { account } = useStarknet();
   const { contract } = useContract({
@@ -50,7 +52,7 @@ export const StatsAndMint = () => {
 
       <div className='flex justify-between flex-row'>
         <div>remaining supply:</div>
-        <p> {Data ? `${Data.totalSupply - Data.numToken} / ${Data.totalSupply}` : "-"}</p>
+        <p> {Data ? `${totalSupply - Data.numToken} / ${totalSupply}` : "-"}</p>
       </div>
       <div className='flex justify-between flex-row'>
         <div>current CRISP price:</div>
@@ -65,21 +67,21 @@ export const StatsAndMint = () => {
         <div className='flex justify-between flex-row'>
           <div className='flex justify-between flex-col'>
             <div className="text-gray-300 font-thin">target ems</div>
-            <p> {Data ? Data.targetEms.toFixed(4) : "-"}</p>
+            <p> {targetEms.toFixed(4)}</p>
           </div>
           <div className='flex justify-between flex-col text-right'>
             <div className="text-gray-300 font-thin">price speed</div>
-            <p> {Data ? Data.priceSpeed.toFixed(4) : "-"}</p>
+            <p> {priceSpeed.toFixed(4)}</p>
           </div>
         </div>
         <div className='flex justify-between flex-row'>
           <div className='flex justify-between flex-col'>
             <div className="text-gray-300 font-thin">price halflife</div>
-            <p> {Data ? Data.priceHalflife : "-"}</p>
+            <p> {priceHalflife}</p>
           </div>
           <div className='flex justify-between flex-col text-right'>
             <div className="text-gray-300 font-thin">sale halflife</div>
-            <p> {Data ? Data.saleHalflife : "-"}</p>
+            <p> {saleHalflife}</p>
           </div>
         </div>
       </div>
