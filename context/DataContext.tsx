@@ -36,7 +36,7 @@ export function decodeTokenURI(felts: any) {
     results += hexToString(felt.toString(16))
   }
   results = results
-    .replace('xmlns="', 'xmlns=\\"')
+    // .replace('xmlns="', 'xmlns=\\"')
     // .replace('</svg>"', '</svg>\\"')
     .replace("data:application/json;charset=utf-8,", "")
 

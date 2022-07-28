@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const connectors = getInstalledInjectedConnectors()
 
   return (
-    <StarknetProvider connectors={connectors} autoConnect>
+    <StarknetProvider connectors={connectors}>
       <DataProvider>
         <Component {...pageProps} />
       </DataProvider>
