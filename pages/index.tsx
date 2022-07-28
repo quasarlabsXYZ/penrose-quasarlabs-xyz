@@ -53,7 +53,7 @@ const Home: NextPage = () => {
 
           <CrispChart />
 
-          <div className='grid gap-3 grid-flow-row lg:grid-flow-col'>
+          <div className='grid gap-3 grid-cols-1 lg:grid-cols-2'>
             <RecentMint />
             <StatsAndMint />
           </div>
@@ -100,7 +100,7 @@ const Home: NextPage = () => {
           <h2>MORE</h2>
           <div className='grid grid-cols-2'>
             <li><a href="https://www.quasarlabs.xyz">Quasar Labs</a></li>
-            <li><a href="https://voyager.online/">Contract</a></li>
+            <li><a href={"https://beta-goerli.voyager.online/contract/" + process.env.NEXT_PUBLIC_PENROSE_CONTRACT_ADDRESS}>Contract</a></li>
             <li><a href="https://www.quasarlabs.xyz/team">Team</a></li>
             <li><a href="https://twitter.com/QuasarLabsXYZ">Twitter</a></li>
             <li><a href="https://github.com/QuasarLabsXYZ">Github</a></li>

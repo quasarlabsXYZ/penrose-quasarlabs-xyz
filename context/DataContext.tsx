@@ -3,7 +3,6 @@ import { createContext, useEffect, useState } from "react";
 import { Abi } from "starknet";
 import { bnToUint256 } from "starknet/dist/utils/uint256";
 import penroseAbi from "../abi/penrose.json";
-import { PENROSE_CONTRACT_ADDRESS } from "../constants";
 
 interface DataInterface {
   totalSupply: number,
@@ -49,7 +48,7 @@ export default function DataProvider({ children }: any) {
   const [data, setData] = useState<DataInterface | undefined>(undefined)
   const { contract } = useContract({
     abi: penroseAbi as Abi,
-    address: PENROSE_CONTRACT_ADDRESS
+    address: process.env.NEXT_PUBLIC_PENROSE_CONTRACT_ADDRESS
   });
 
   useEffect(() => {
@@ -64,7 +63,7 @@ export default function DataProvider({ children }: any) {
         numToken: numToken,
         lastTokenId: numToken,
         lastTokenURI: decodeTokenURI(await contract.tokenURI(bnToUint256(numToken))),
-        lastPrice: 0.1,
+        lastPrice: Number((await contract.getLastPurchasePrice()).toString()) / 2 ** 61 / 10 ** 18,
         currentPrice: Number((await contract.getQuote()).toString()) / 2 ** 61 / 10 ** 18,
         targetEms: Number((await contract.getTargetEMS()).toString()) / 2 ** 61,
         nextPurchaseStartingPrice: Number((await contract.getNextPurchaseStartingPrice()).toString()) / 10 ** 18,
@@ -74,7 +73,6 @@ export default function DataProvider({ children }: any) {
         priceHalflife: Number((await contract.getPriceHalfLife()).toString()),
         saleHalflife: Number((await contract.getSaleHalfLife()).toString())
       }
-      console.log(contractData.lastTokenURI)
       setData(contractData);
     }
 

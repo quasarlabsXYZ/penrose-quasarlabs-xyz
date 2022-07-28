@@ -1602,5 +1602,17 @@
     ],
     "stateMutability": "view",
     "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getLastPurchasePrice",
+    "outputs": [
+      {
+        "name": "i",
+        "type": "felt"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
   }
 ]

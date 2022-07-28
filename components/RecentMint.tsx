@@ -15,7 +15,7 @@ export const RecentMint = () => {
   const Data = useContext(DataContext)
 
   return (
-    <div className="p-5">
+    <div className="lg:p-5">
       <h4>Recently Minted</h4>
       <Image
         alt="recently-minted"
