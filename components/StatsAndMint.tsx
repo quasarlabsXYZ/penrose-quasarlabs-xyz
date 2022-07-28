@@ -1,7 +1,9 @@
-import { useStarknet } from "@starknet-react/core";
-import { useContext } from "react";
-
+import { useContract, useStarknet, useStarknetInvoke } from "@starknet-react/core";
+import { useContext, useEffect, useMemo } from "react";
+import { Abi } from "starknet";
+import penroseAbi from "../abi/penrose.json";
 import { DataContext } from "../context/DataContext";
+
 
 export const formatEthPrice = (price: number): string => {
   return `${price.toFixed(4)} Ξ`;
@@ -10,10 +12,35 @@ export const formatEthPrice = (price: number): string => {
 export const StatsAndMint = () => {
   const Data = useContext(DataContext)
   const { account } = useStarknet();
+  const { contract } = useContract({
+    abi: penroseAbi as Abi,
+    address: process.env.NEXT_PUBLIC_PENROSE_CONTRACT_ADDRESS
+  });
+
+  const { loading, error, invoke } = useStarknetInvoke({
+    contract,
+    method: 'mint'
+  })
+
+  useEffect(() => {
+    console.log("loading", loading);
+    console.log("error", error);
+  }, [loading, error])
 
   const onMintClick = async () => {
-    console.log("Minting...")
+    if (account) {
+      const message = `Minting Penrose to ${account}`;
+      await invoke({
+        args: [],
+        metadata: { method: 'mint', message }
+      });
+    }
   }
+
+  const mintButtonDisabled = useMemo(() => {
+    if (loading) return true;
+    return !account || !Data;
+  }, [loading, account, Data])
 
   return (
     <div className='lg:p-5'>
@@ -55,18 +82,18 @@ export const StatsAndMint = () => {
         </div>
       </div>
 
-      <p className="text-xs mt-5">* WTF are these metrics? Click <a href='https://www.quasarlabs.xyz/'>here</a> to learn more.</p>
+      <p className="text-xs mt-6">* WTF are these metrics? Click <a href='https://www.quasarlabs.xyz/'>here</a> to learn more.</p>
 
       <button
         className={
-          account
+          !mintButtonDisabled
             ? "text-center h-10 outline p-2 mt-3 w-full no-underline"
             : "text-center h-10 outline p-2 mt-3 w-full no-underline text-gray-500 hover:text-gray-500"
         }
         onClick={onMintClick}
-        disabled={!account}
+        disabled={mintButtonDisabled}
       >
-        {account ? "Mint" : "Wallet not connected"}
+        {!mintButtonDisabled ? account ? "Mint" : "Wallet not connected" : "Loading..."}
       </button>
 
     </div>
