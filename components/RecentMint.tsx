@@ -1,18 +1,16 @@
 import Image from "next/image";
 import { useContext } from "react";
 
-import { DataContext } from "../context/DataContext";
+import { TokenURIContext } from "../context/TokenURIcontext";
 
 export const processDataImage = (image: string) => {
-  console.log(image)
   let results = image.replace('data:image/svg+xml,<?xml version="1.0" encoding="UTF-8"?>', "");
   results = Buffer.from(results).toString("base64");
-  console.log(results)
   return "data:image/svg+xml;base64," + results;
 }
 
 export const RecentMint = () => {
-  const Data = useContext(DataContext)
+  const Data = useContext(TokenURIContext)
 
   return (
     <div className="lg:p-5">

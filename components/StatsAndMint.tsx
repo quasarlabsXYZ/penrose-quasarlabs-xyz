@@ -47,7 +47,6 @@ export const StatsAndMint = (props: any) => {
     if (account) {
       const message = `Minting Penrose to ${account}`;
       const tx = await execute();
-      console.log(tx, message, error);
     }
   }
 
@@ -107,7 +106,7 @@ export const StatsAndMint = (props: any) => {
         onClick={onMintClick}
         disabled={mintButtonDisabled}
       >
-        {account ? Data ? "Mint" : loading ? "Fetching..." : "Loading..." : "Connect Wallet"}
+        {account ? Data ? "Mint" : loading ? "Fetching..." : "Loading..." : "Wallet not connected"}
       </button>
 
     </div>

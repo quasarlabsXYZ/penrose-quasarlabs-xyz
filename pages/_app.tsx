@@ -2,6 +2,7 @@ import { getInstalledInjectedConnectors, StarknetProvider } from '@starknet-reac
 import type { AppProps } from 'next/app'
 
 import DataProvider from '../context/DataContext'
+import TokenURIProvider from '../context/TokenURIcontext'
 import "../styles/globals.css"
 import "../styles/selection.css"
 
@@ -11,7 +12,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <StarknetProvider connectors={connectors}>
       <DataProvider>
-        <Component {...pageProps} />
+        <TokenURIProvider>
+          <Component {...pageProps} />
+        </TokenURIProvider>
       </DataProvider>
     </StarknetProvider>
   )

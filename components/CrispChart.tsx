@@ -25,11 +25,11 @@ export const CrispChart = () => {
                             left: 0,
                             bottom: 0,
                         }}>
-                        <Line type="monotone" dataKey="price" stroke="#8884d8" />
+                        <Line type="monotone" dataKey="price" stroke="#8884d8" strokeOpacity={1} activeDot={{ r: 8 }} />
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="blockNumber" />
                         <YAxis />
-                        <Tooltip labelStyle={{ color: "black" }} />
+                        <Tooltip />
                         <Legend />
                     </LineChart>
                 </ResponsiveContainer>
