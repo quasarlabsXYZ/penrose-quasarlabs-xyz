@@ -34,6 +34,16 @@ export const StatsAndMint = (props: any) => {
         entrypoint: 'approve',
         calldata: [makeAddress(PENROSE_CONTRACT_ADDRESS), zero.low.toString(), zero.high.toString()]
       },
+      // {
+      //   contractAddress: PENROSE_CONTRACT_ADDRESS,
+      //   entrypoint: 'getNumToken',
+      //   calldata: []
+      // },
+      // {
+      //   contractAddress: PENROSE_CONTRACT_ADDRESS,
+      //   entrypoint: 'tokenURI',
+      //   calldata[]
+      // }
     ],
     metadata: { message: "hello" }
   });
