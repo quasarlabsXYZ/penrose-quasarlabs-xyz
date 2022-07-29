@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@starknet-react/core": "^0.12.0",
+    "@starknet-react/core": "0.13.2",
     "get-starknet": "^1.4.2",
     "next": "^12.2.2",
     "react": "18.2.0",

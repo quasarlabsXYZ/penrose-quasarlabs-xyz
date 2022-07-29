@@ -1,10 +1,9 @@
-import { useContract, useStarknet, useStarknetInvoke } from "@starknet-react/core";
-import { useContext, useEffect, useMemo } from "react";
-import { Abi } from "starknet";
-import penroseAbi from "../abi/penrose.json";
-import { PENROSE_CONTRACT_ADDRESS } from "../constants";
+import { useStarknet, useStarknetExecute } from "@starknet-react/core";
+import { useContext, useMemo } from "react";
+import { makeAddress } from "starknet/dist/utils/stark";
+import { bnToUint256 } from "starknet/dist/utils/uint256";
+import { ETH_DEVNET_ADDRESS, PENROSE_CONTRACT_ADDRESS } from "../constants";
 import { DataContext } from "../context/DataContext";
-
 
 export const formatEthPrice = (price: number): string => {
   return `${price.toFixed(4)} Ξ`;
@@ -14,29 +13,34 @@ export const StatsAndMint = (props: any) => {
   const { totalSupply, targetEms, priceSpeed, priceHalflife, saleHalflife } = props.params;
 
   const Data = useContext(DataContext)
-  const { account } = useStarknet();
-  const { contract } = useContract({
-    abi: penroseAbi as Abi,
-    address: PENROSE_CONTRACT_ADDRESS
+  const { account, connectors } = useStarknet();
+
+  const approveAmount = bnToUint256(BigInt(10e18)); // approve for a large amount
+  const { loading, error, execute } = useStarknetExecute({
+    calls: [
+      {
+        contractAddress: ETH_DEVNET_ADDRESS,
+        entrypoint: 'approve',
+        calldata: [makeAddress(PENROSE_CONTRACT_ADDRESS), approveAmount.low.toString(), approveAmount.high.toString()]
+      },
+      {
+        contractAddress: PENROSE_CONTRACT_ADDRESS,
+        entrypoint: 'mint',
+        calldata: []
+      }
+    ],
+    metadata: { message: "hello" }
   });
 
-  const { loading, error, invoke } = useStarknetInvoke({
-    contract,
-    method: 'mint'
-  })
-
-  useEffect(() => {
-    console.log("loading", loading);
-    console.log("error", error);
-  }, [loading, error])
+  // useEffect(() => {
+  //   console.log("loading", loading);
+  //   console.log("error", error);
+  // }, [loading, error])
 
   const onMintClick = async () => {
     if (account) {
       const message = `Minting Penrose to ${account}`;
-      const tx = await invoke({
-        args: [],
-        metadata: { method: 'mint', message }
-      });
+      const tx = await execute();
       console.log(tx, message, error);
     }
   }
