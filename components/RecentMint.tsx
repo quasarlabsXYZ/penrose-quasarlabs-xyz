@@ -23,7 +23,8 @@ export const RecentMint = () => {
         objectFit="cover"
         src={Data ? processDataImage(Data.lastTokenURI.image) : "/loading.svg"}
       />
-      <p className='mt-3 text-center'>PENROSE #{Data ? Data.lastTokenId : "-"}</p>
+      <p className='mt-2 mb-0 text-center'>PENROSE #{Data ? Data.lastTokenId : "-"}</p>
+      <p className='text-center text-xs text-gray-600'>* this may take a few minutes to fetch...</p>
     </div>
   )
 }
