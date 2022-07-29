@@ -45,29 +45,27 @@ export default function TokenURIProvider({ children }: any) {
     const fetchTokenURI = async () => {
       if (!contract) return;
 
-      // devided by 2 ** 61 for 64.61 fixed point
-      // divided by 10 ** 18 for wei
       const numToken = Number((await contract.getNumToken()).toString());
-
       const fetchTokenURI_RETRY = async (tokenId: number) => {
         let tokenURI;
         try {
           tokenURI = await contract.tokenURI(bnToUint256(tokenId));
-          console.log(tokenURI)
+          if (!tokenURI) { throw new Error("tokenURI is null") }
           return tokenURI;
         } catch (e) {
-          console.log(e);
-          console.log("retrying...");
           fetchTokenURI_RETRY(tokenId);
         }
       }
 
       const tokenURI = await fetchTokenURI_RETRY(numToken);
-      const contractTokenURI = {
-        lastTokenId: numToken,
-        lastTokenURI: decodeTokenURI(tokenURI),
+
+      if (tokenURI) {
+        const contractTokenURI = {
+          lastTokenId: numToken,
+          lastTokenURI: decodeTokenURI(tokenURI),
+        }
+        setTokenURI(contractTokenURI);
       }
-      setTokenURI(contractTokenURI);
     }
 
     fetchTokenURI();
