@@ -15,7 +15,8 @@ export const StatsAndMint = (props: any) => {
   const Data = useContext(DataContext)
   const { account, connectors } = useStarknet();
 
-  const approveAmount = bnToUint256(BigInt(10e18)); // approve for a large amount
+  const approveAmount = bnToUint256(BigInt(69420e18)); // approve for an absurdly large amount, revoke later
+  const zero = bnToUint256(BigInt(0)); // approve for an absurdly large amount, revoke later
   const { loading, error, execute } = useStarknetExecute({
     calls: [
       {
@@ -27,7 +28,12 @@ export const StatsAndMint = (props: any) => {
         contractAddress: PENROSE_CONTRACT_ADDRESS,
         entrypoint: 'mint',
         calldata: []
-      }
+      },
+      {
+        contractAddress: ETH_DEVNET_ADDRESS,
+        entrypoint: 'approve',
+        calldata: [makeAddress(PENROSE_CONTRACT_ADDRESS), zero.low.toString(), zero.high.toString()]
+      },
     ],
     metadata: { message: "hello" }
   });
