@@ -2,7 +2,7 @@ import { useStarknet, useStarknetExecute } from "@starknet-react/core";
 import { useContext, useMemo } from "react";
 import { makeAddress } from "starknet/dist/utils/stark";
 import { bnToUint256 } from "starknet/dist/utils/uint256";
-import { ETH_DEVNET_ADDRESS, PENROSE_CONTRACT_ADDRESS } from "../constants";
+import { ETH_TESTNET_ADDRESS, PENROSE_CONTRACT_ADDRESS } from "../constants";
 import { DataContext } from "../context/DataContext";
 
 export const formatEthPrice = (price: number): string => {
@@ -20,7 +20,7 @@ export const StatsAndMint = (props: any) => {
   const { loading, error, execute } = useStarknetExecute({
     calls: [
       {
-        contractAddress: ETH_DEVNET_ADDRESS,
+        contractAddress: ETH_TESTNET_ADDRESS,
         entrypoint: 'approve',
         calldata: [makeAddress(PENROSE_CONTRACT_ADDRESS), approveAmount.low.toString(), approveAmount.high.toString()]
       },
@@ -30,7 +30,7 @@ export const StatsAndMint = (props: any) => {
         calldata: []
       },
       {
-        contractAddress: ETH_DEVNET_ADDRESS,
+        contractAddress: ETH_TESTNET_ADDRESS,
         entrypoint: 'approve',
         calldata: [makeAddress(PENROSE_CONTRACT_ADDRESS), zero.low.toString(), zero.high.toString()]
       },

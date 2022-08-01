@@ -21,10 +21,10 @@ export const RecentMint = () => {
         height={300}
         layout="responsive"
         objectFit="cover"
-        src={Data ? processDataImage(Data.lastTokenURI.image) : "/loading.svg"}
+        src={Data ? processDataImage(Data.image_uri) : "/loading.svg"}
       />
-      <p className='mt-2 mb-0 text-center'>PENROSE #{Data ? Data.lastTokenId : "-"}</p>
-      <p className='text-center text-xs text-gray-600'>* this may take a few minutes to fetch...</p>
+      <p className='mt-2 mb-0 text-center'>PENROSE #{Data ? Data.token_id : "-"}</p>
+      <p className='text-center text-xs text-gray-600'>* view on <a className="text-gray-400" href={Data ? Data.aspect_link : null}>Aspect</a></p>
     </div>
   )
 }
