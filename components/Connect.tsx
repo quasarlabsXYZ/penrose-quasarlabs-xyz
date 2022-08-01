@@ -36,7 +36,16 @@ export default function ConnectWallet() {
   }
 
   useEffect(() => {
-
+    if (account) {
+      setSelected(2);
+    } else {
+      if (available.length === 0) {
+        setSelected(1);
+      }
+      else {
+        setSelected(3);
+      }
+    }
   }, [available, account])
 
   return (
