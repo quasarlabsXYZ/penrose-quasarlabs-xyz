@@ -1,4 +1,4 @@
-import fs from "fs";
+import { MongoClient } from "mongodb";
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { Abi, Contract } from "starknet";
 import penroseAbi from "../../abi/penrose.json";
@@ -12,28 +12,30 @@ interface PriceDataInterface {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<PriceDataInterface[]>
+  res: NextApiResponse<any[]>
 ) {
   const contract = new Contract(penroseAbi as Abi, PENROSE_CONTRACT_ADDRESS);
 
-  const rawData = fs.readFileSync("./pages/api/data/priceHistory.json", "utf8");
-  if (!rawData) {
+  const client = new MongoClient(process.env.MONGO_DB_URL!);
+  try {
+    await client.connect();
+  } catch (e) {
+    console.error(e);
     res.status(400).json([]);
-    return;
   }
 
-  const priceHistory = JSON.parse(rawData);
-  const history = priceHistory.salesLog as PriceDataInterface[];
+  const crispCollection = await client.db("CRISP");
+  const crispPriceHistory = await crispCollection.collection("priceHistory");
+  const priceHistory = await crispPriceHistory.find().toArray();
 
   let numToken;
   try {
     numToken = Number((await contract.getNumToken()).toString());
   } catch { numToken = 0; }
 
-  if (history.length < numToken) {
+  if (priceHistory.length < numToken) {
     console.log("Fetching price history from blockchain...");
-    let tokenId = history.length;
-    let salesLog: PriceDataInterface[] = priceHistory.salesLog;
+    let tokenId = priceHistory.length;
 
     while (tokenId < numToken) {
       ++tokenId;
@@ -56,25 +58,16 @@ export default async function handler(
         blockNumber = 0;
       }
 
-      salesLog.push({
+      crispPriceHistory.insertOne({
         blockNumber: blockNumber,
         tokenId: tokenId,
         price: lastPrice
       })
     }
-
-    fs.writeFile("./pages/api/data/priceHistory.json",
-      JSON.stringify({ "salesLog": salesLog }),
-      (err) => {
-        if (err) throw err;
-        console.log('updated priceHistory.json');
-      }
-    )
-
   }
 
 
   res.status(200).json(
-    priceHistory.salesLog
+    priceHistory
   );
 }
