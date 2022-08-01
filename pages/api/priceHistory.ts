@@ -1,62 +1,9 @@
+import fs from "fs";
 import type { NextApiRequest, NextApiResponse } from 'next';
-
-const priceHist = [
-  {
-    blockNumber: 239083271,
-    tokenId: 1,
-    price: 100
-  },
-  {
-    blockNumber: 239083272,
-    tokenId: 2,
-    price: 80
-  },
-  {
-    blockNumber: 239083273,
-    tokenId: 3,
-    price: 60
-  },
-  {
-    blockNumber: 239083274,
-    tokenId: 4,
-    price: 40
-  },
-  {
-    blockNumber: 239083275,
-    tokenId: 5,
-    price: 70
-  },
-  {
-    blockNumber: 239083276,
-    tokenId: 6,
-    price: 130
-  },
-  {
-    blockNumber: 239083286,
-    tokenId: 7,
-    price: 120
-  },
-  {
-    blockNumber: 239083296,
-    tokenId: 8,
-    price: 150
-  },
-  {
-    blockNumber: 239083297,
-    tokenId: 9,
-    price: 170
-  },
-  {
-    blockNumber: 239083376,
-    tokenId: 10,
-    price: 130
-  },
-  {
-    blockNumber: 239083380,
-    tokenId: 11,
-    price: 130
-  },
-];
+import { Abi, Contract } from "starknet";
+import penroseAbi from "../../abi/penrose.json";
+import { PENROSE_CONTRACT_ADDRESS } from "../../constants";
+import priceHistory from "./priceHistory.json";
 
 interface PriceDataInterface {
   blockNumber: number,
@@ -64,11 +11,61 @@ interface PriceDataInterface {
   price: number
 }
 
-export default async function handler( // TODO
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<PriceDataInterface[]>
 ) {
+  const contract = new Contract(penroseAbi as Abi, PENROSE_CONTRACT_ADDRESS);
+  const history = priceHistory.salesLog;
+
+  let numToken;
+  try {
+    numToken = Number((await contract.getNumToken()).toString());
+  } catch { numToken = 0; }
+
+  if (history.length < numToken) {
+    let tokenId = history.length;
+    let salesLog = priceHistory.salesLog;
+
+    while (tokenId < numToken) {
+      ++tokenId;
+
+      let lastPrice;
+      try {
+        tokenId > 0
+          ? lastPrice = Number((await contract.getPurchasePrice(tokenId)).toString()) / 10 ** 18
+          : lastPrice = 0;
+      } catch { lastPrice = 0; }
+
+      let blockNumber;
+      try {
+        tokenId > 0
+          ? blockNumber = Number((await contract.getPurchaseBlock(tokenId)).toString())
+          : blockNumber = 0;
+      } catch (e) {
+        console.log(e);
+        blockNumber = 0;
+      }
+
+      salesLog.push({
+        blockNumber: blockNumber,
+        tokenId: tokenId,
+        price: lastPrice
+      })
+    }
+
+    fs.writeFile("./pages/api/priceHistory.json",
+      JSON.stringify({ "salesLog": salesLog }),
+      (err) => {
+        if (err) throw err;
+        console.log('updated priceHistory.json');
+      }
+    )
+
+  }
+
+
   res.status(200).json(
-    priceHist
+    priceHistory.salesLog
   );
 }

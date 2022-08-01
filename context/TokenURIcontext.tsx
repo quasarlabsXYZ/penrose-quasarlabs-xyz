@@ -46,8 +46,9 @@ export default function TokenURIProvider({ children }: any) {
           await fetch(ASPECT_TESTNET_API + PENROSE_CONTRACT_ADDRESS + "/" + tokenId)
             .then(res => res.json());
 
-        while (!contractTokenURI && tokenId > 1) {
-          contractTokenURI = await fetch(ASPECT_TESTNET_API + PENROSE_CONTRACT_ADDRESS + "/" + (tokenId - 1))
+        let tryTokenId = tokenId;
+        while (!(contractTokenURI.image_uri) && tryTokenId > 1) {
+          contractTokenURI = await fetch(ASPECT_TESTNET_API + PENROSE_CONTRACT_ADDRESS + "/" + --tryTokenId)
             .then(res => res.json());
         }
 

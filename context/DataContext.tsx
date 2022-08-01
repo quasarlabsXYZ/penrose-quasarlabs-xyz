@@ -30,23 +30,19 @@ export default function DataProvider({ children }: any) {
       let numToken;
       try {
         numToken = Number((await contract.getNumToken()).toString());
-      } catch {
-        numToken = 0;
-      }
+      } catch { numToken = 0; }
 
       let lastPrice;
       try {
-        lastPrice = Number((await contract.getLastPurchasePrice()).toString()) / 10 ** 18
-      } catch {
-        lastPrice = 0;
-      }
+        numToken > 0
+          ? lastPrice = Number((await contract.getPurchasePrice(numToken)).toString()) / 10 ** 18
+          : lastPrice = 0;
+      } catch { lastPrice = 0; }
 
       let currentPrice;
       try {
         currentPrice = Number((await contract.getQuote()).toString()) / 2 ** 61 / 10 ** 18
-      } catch {
-        currentPrice = 0;
-      }
+      } catch { currentPrice = 0; }
 
       const contractData = {
         numToken: numToken,
