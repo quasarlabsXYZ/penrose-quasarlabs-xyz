@@ -16,7 +16,7 @@ export default async function handler(
   res: NextApiResponse<PriceDataInterface[]>
 ) {
   const contract = new Contract(penroseAbi as Abi, PENROSE_CONTRACT_ADDRESS);
-  const history = priceHistory.salesLog;
+  const history = priceHistory.salesLog as PriceDataInterface[];
 
   let numToken;
   try {
@@ -25,7 +25,7 @@ export default async function handler(
 
   if (history.length < numToken) {
     let tokenId = history.length;
-    let salesLog = priceHistory.salesLog;
+    let salesLog: PriceDataInterface[] = priceHistory.salesLog;
 
     while (tokenId < numToken) {
       ++tokenId;
