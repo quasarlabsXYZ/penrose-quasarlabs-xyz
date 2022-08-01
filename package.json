@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "rm ./pages/api/priceHistory.json && cp ./pages/api/initPriceHistory.json ./pages/api/priceHistory.json && next dev",
-    "build": "rm ./pages/api/priceHistory.json && cp ./pages/api/initPriceHistory.json ./pages/api/priceHistory.json && next build",
+    "dev": "rm ./pages/api/data/priceHistory.json && cp ./pages/api/data/initPriceHistory.json ./pages/api/data/priceHistory.json && next dev",
+    "build": "rm ./pages/api/data/priceHistory.json && cp ./pages/api/data/initPriceHistory.json ./pages/api/data/priceHistory.json && next build",
     "start": "next start",
     "lint": "next lint"
   },

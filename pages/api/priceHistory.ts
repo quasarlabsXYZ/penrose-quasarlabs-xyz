@@ -3,7 +3,6 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { Abi, Contract } from "starknet";
 import penroseAbi from "../../abi/penrose.json";
 import { PENROSE_CONTRACT_ADDRESS } from "../../constants";
-import priceHistory from "./priceHistory.json";
 
 interface PriceDataInterface {
   blockNumber: number,
@@ -16,6 +15,14 @@ export default async function handler(
   res: NextApiResponse<PriceDataInterface[]>
 ) {
   const contract = new Contract(penroseAbi as Abi, PENROSE_CONTRACT_ADDRESS);
+
+  const rawData = fs.readFileSync("./pages/api/data/priceHistory.json", "utf8");
+  if (!rawData) {
+    res.status(400).json([]);
+    return;
+  }
+
+  const priceHistory = JSON.parse(rawData);
   const history = priceHistory.salesLog as PriceDataInterface[];
 
   let numToken;
@@ -24,11 +31,13 @@ export default async function handler(
   } catch { numToken = 0; }
 
   if (history.length < numToken) {
+    console.log("Fetching price history from blockchain...");
     let tokenId = history.length;
     let salesLog: PriceDataInterface[] = priceHistory.salesLog;
 
     while (tokenId < numToken) {
       ++tokenId;
+      console.log(`Fetching price history for token ${tokenId}...`);
 
       let lastPrice;
       try {
@@ -54,7 +63,7 @@ export default async function handler(
       })
     }
 
-    fs.writeFile("./pages/api/priceHistory.json",
+    fs.writeFile("./pages/api/data/priceHistory.json",
       JSON.stringify({ "salesLog": salesLog }),
       (err) => {
         if (err) throw err;
