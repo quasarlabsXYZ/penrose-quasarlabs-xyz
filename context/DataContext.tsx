@@ -26,12 +26,33 @@ export default function DataProvider({ children }: any) {
 
       // devided by 2 ** 61 for 64.61 fixed point
       // divided by 10 ** 18 for wei
-      const numToken = Number((await contract.getNumToken()).toString());
+
+      let numToken;
+      try {
+        numToken = Number((await contract.getNumToken()).toString());
+      } catch {
+        numToken = 0;
+      }
+
+      let lastPrice;
+      try {
+        lastPrice = Number((await contract.getLastPurchasePrice()).toString()) / 10 ** 18
+      } catch {
+        lastPrice = 0;
+      }
+
+      let currentPrice;
+      try {
+        currentPrice = Number((await contract.getQuote()).toString()) / 2 ** 61 / 10 ** 18
+      } catch {
+        currentPrice = 0;
+      }
+
       const contractData = {
         numToken: numToken,
         lastTokenId: numToken,
-        lastPrice: Number((await contract.getLastPurchasePrice()).toString()) / 10 ** 18,
-        currentPrice: Number((await contract.getQuote()).toString()) / 2 ** 61 / 10 ** 18,
+        lastPrice: lastPrice,
+        currentPrice: currentPrice,
       }
       setData(contractData);
     }
