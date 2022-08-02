@@ -30,7 +30,8 @@ async function updateHistory() {
   console.log("Fetching price history from blockchain...");
   let tokenId = priceHistory.length;
 
-  while (++tokenId < numToken) {
+  while (tokenId < numToken) {
+    ++tokenId;
     console.log(`Fetching price history for token ${tokenId}...`);
 
     let lastPrice;
@@ -60,4 +61,12 @@ async function updateHistory() {
   await client.close();
 }
 
-updateHistory();
+async function start() {
+  const START = true;
+  while (START) {
+    await updateHistory();
+    await new Promise(resolve => setTimeout(resolve, 10000));
+  }
+}
+
+start();
