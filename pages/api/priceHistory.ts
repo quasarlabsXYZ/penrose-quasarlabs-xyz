@@ -24,9 +24,9 @@ export default async function handler(
     res.status(400).json([]);
   }
 
-  const crispCollection = await client.db("CRISP");
-  const crispPriceHistory = await crispCollection.collection("priceHistory");
-  const priceHistory = await crispPriceHistory.find().toArray();
+  const database = await client.db("CRISP");
+  const collection = await database.collection("priceHistory");
+  const priceHistory = await collection.find().toArray();
 
   let numToken;
   try {

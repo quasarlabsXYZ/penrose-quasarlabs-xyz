@@ -3,13 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "rm ./pages/api/data/priceHistory.json && cp ./pages/api/data/initPriceHistory.json ./pages/api/data/priceHistory.json && next dev",
-    "build": "rm ./pages/api/data/priceHistory.json && cp ./pages/api/data/initPriceHistory.json ./pages/api/data/priceHistory.json && next build",
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "update-history": "npx ts-node scripts/updateHistory.ts",
+    "clear-history": "npx ts-node scripts/clearHistory.ts"
   },
   "dependencies": {
     "@starknet-react/core": "0.13.2",
+    "cross-fetch": "^3.1.5",
+    "dotenv": "^16.0.1",
     "get-starknet": "^1.4.2",
     "mongodb": "^4.8.1",
     "next": "^12.2.2",
