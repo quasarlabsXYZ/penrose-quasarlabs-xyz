@@ -2,11 +2,12 @@ import { ResponsiveLine } from '@nivo/line';
 import { useEffect, useState } from 'react';
 import { formatEthPrice } from './StatsAndMint';
 
-const formatData = (rawRequest: any) => {
+const formatData = (priceHistory: any) => {
     return [
         {
             "id": "priceHistory",
-            "data": rawRequest.map((item: any) => {
+            "data": priceHistory.map((item: any) => {
+                if (!item.block && !item.price) return;
                 return {
                     "x": item.blockNumber,
                     "y": item.price
@@ -23,11 +24,14 @@ const CrispChart = () => {
     useEffect(() => {
         const fetchData = async () => {
             const priceHistory = await fetch("./api/priceHistory").then((res) => res.json())
-            const results = formatData(priceHistory)
+            if (!priceHistory) return;
+            const results = formatData(priceHistory);
             setPriceHistory(priceHistory);
             setChartData(results);
         }
         fetchData();
+        const interval = setInterval(fetchData, 10000);
+        return () => clearInterval(interval);
     })
 
     return (
@@ -35,7 +39,7 @@ const CrispChart = () => {
             <h3 className="text-center mt-10">CRISP PRICE HISTORY</h3>
             <div className="mb-5 h-25v">
                 {
-                    chartData ?
+                    (priceHistory && chartData) ?
                         <ResponsiveLine
                             data={chartData}
                             margin={{ top: 10, right: 20, bottom: 40, left: 50 }}
@@ -50,7 +54,7 @@ const CrispChart = () => {
                                 min: 0,
                                 max: 'auto',
                             }}
-                            colors={{ scheme: 'purples' }}
+                            // colors={{ scheme: 'purples' }}
                             theme={
                                 {
                                     textColor: "#d4d4d8",

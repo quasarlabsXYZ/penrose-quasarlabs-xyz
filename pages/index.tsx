@@ -57,7 +57,7 @@ const Home: NextPage = (props) => {
             Check out our implementation in Cairo <a href="https://github.com/08351ty/CRISP-cairo">here</a>.
           </p>
 
-          {/* <CrispChart /> */}
+          <CrispChart />
 
           <div className='grid gap-3 grid-cols-1 lg:grid-cols-2'>
             <RecentMint />
