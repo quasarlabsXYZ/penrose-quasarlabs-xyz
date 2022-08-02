@@ -54,6 +54,9 @@ export default function DataProvider({ children }: any) {
     }
 
     fetchData();
+    const interval = setInterval(fetchData, 10000);
+
+    return () => clearInterval(interval);
   }, [contract])
 
 
