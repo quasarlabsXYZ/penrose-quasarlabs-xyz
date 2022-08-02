@@ -25,7 +25,7 @@ async function updateHistory() {
     numToken = 0;
   }
 
-  if (priceHistory.length >= numToken) return;
+  if (priceHistory.length >= numToken) return client.close();
 
   console.log("Fetching price history from blockchain...");
   let tokenId = priceHistory.length;
@@ -65,6 +65,7 @@ async function start() {
   const START = true;
   while (START) {
     await updateHistory();
+    console.log("Sleeping for 10 seconds...");
     await new Promise(resolve => setTimeout(resolve, 10000));
   }
 }
