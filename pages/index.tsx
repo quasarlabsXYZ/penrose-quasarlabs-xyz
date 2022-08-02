@@ -5,7 +5,6 @@ import { Contract } from 'starknet';
 import dynamic from "next/dynamic";
 import { Abi } from "starknet";
 import penroseAbi from "../abi/penrose.json";
-import { CodeSnippet } from '../components/CodeSnippet';
 import ConnectWallet from '../components/Connect';
 import { RecentMint } from '../components/RecentMint';
 import { StatsAndMint } from '../components/StatsAndMint';
@@ -95,11 +94,6 @@ const Home: NextPage = (props) => {
             </div>
           </div>
 
-        </section>
-
-        <section className="how-penrose">
-          <h2>HOW PENROSE</h2>
-          <CodeSnippet />
         </section>
 
         <section className="more">
