@@ -13,7 +13,7 @@ export default function ConnectWallet() {
   const [selected, setSelected] = useState(1);
 
   const options: any = {
-    1: (<a href="https://chrome.google.com/webstore/detail/argent-x/dlcobpjiigpikoobohmabehhmhfoodbb">install argent x</a>),
+    1: (<div>install <a href="https://chrome.google.com/webstore/detail/argent-x/dlcobpjiigpikoobohmabehhmhfoodbb">argent x</a> or <a href="https://chrome.google.com/webstore/detail/braavos-wallet/jnlgamecbpmbajjfhmmmlhejkemejdma">braavos</a> </div>),
     2: (
       <div>
         <span>connected: {shortenAddress(account!)} </span>
