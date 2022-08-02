@@ -2,14 +2,16 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import { Contract } from 'starknet';
 
+import dynamic from "next/dynamic";
 import { Abi } from "starknet";
 import penroseAbi from "../abi/penrose.json";
 import { CodeSnippet } from '../components/CodeSnippet';
 import ConnectWallet from '../components/Connect';
-import { CrispChart } from '../components/CrispChart';
 import { RecentMint } from '../components/RecentMint';
 import { StatsAndMint } from '../components/StatsAndMint';
 import { PENROSE_CONTRACT_ADDRESS } from "../constants";
+
+const CrispChart = dynamic(() => import('../components/CrispChart'), { ssr: false })
 
 const Home: NextPage = (props) => {
 
@@ -55,7 +57,7 @@ const Home: NextPage = (props) => {
             Check out our implementation in Cairo <a href="https://github.com/08351ty/CRISP-cairo">here</a>.
           </p>
 
-          <CrispChart />
+          {/* <CrispChart /> */}
 
           <div className='grid gap-3 grid-cols-1 lg:grid-cols-2'>
             <RecentMint />
