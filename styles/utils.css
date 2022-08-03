@@ -1,0 +1,13 @@
+::-moz-selection{
+  color: #000000;
+  background: #FFE83B;
+}
+
+::selection{
+  color: #000000;
+  background: #FFE83B;
+}
+
+.chart-container {
+  height: 400px;
+}

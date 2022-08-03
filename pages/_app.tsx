@@ -4,7 +4,7 @@ import type { AppProps } from 'next/app'
 import DataProvider from '../context/DataContext'
 import TokenURIProvider from '../context/TokenURIcontext'
 import "../styles/globals.css"
-import "../styles/selection.css"
+import "../styles/utils.css"
 
 function MyApp({ Component, pageProps }: AppProps) {
   const connectors = getInstalledInjectedConnectors()

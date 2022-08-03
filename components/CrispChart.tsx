@@ -37,7 +37,7 @@ const CrispChart = () => {
     return (
         <div className='h-400 p-1'>
             <h3 className="text-center mt-10">CRISP PRICE HISTORY</h3>
-            <div className="mb-5 h-50v">
+            <div className="chart-container">
                 {
                     (priceHistory && chartData) ?
                         <ResponsiveLine
