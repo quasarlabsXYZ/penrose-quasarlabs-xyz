@@ -37,7 +37,7 @@ const Home: NextPage = (props) => {
             Penrose is the first fully on-chain generative art experiment on Starknet built by <a href="https://www.quasarlabs.xyz">Quasar Labs</a>. The idea is inspired by the legendary <a href="https://www.larvalabs.com/autoglyphs#:~:text=Autoglyphs%20are%20the%20first%20%E2%80%9Con,running%20on%20the%20Ethereum%20blockchain.">Autoglyphs</a>.
           </p>
           <p>
-            Each Penrose is a unique artwork generated on-chain and bootstrapped using the <a href="https://www.paradigm.xyz/2022/01/constant-rate-issuance-sales-protocol">Constant Rate Issuance Sales Protocol (CRISP)</a> mechanism designed by the <a href="https://www.paradigm.xyz/team">Paradigm research team</a>..
+            Each Penrose is a unique artwork generated on-chain and bootstrapped using the <a href="https://www.paradigm.xyz/2022/01/constant-rate-issuance-sales-protocol">Constant Rate Issuance Sales Protocol (CRISP)</a> mechanism designed by the <a href="https://www.paradigm.xyz/team">Paradigm research team</a>.
           </p>
           <p>
             All implemented in <a href="https://www.cairo-lang.org/docs/">Cairo</a> and <span className="bg-yellow-400 text-black">starkpilled</span>.
@@ -90,6 +90,40 @@ const Home: NextPage = (props) => {
             </div>
           </div>
 
+        </section>
+
+        <section className="Tech">
+          <h2>TECHNICAL DETAILS</h2>
+          <div className='grid gap-5'>
+            <div>
+              <h3>Cairo</h3>
+              <p>As there are no loops in Cairo, Penrose is generated through recursions. Symbols are chosen in each recursive call, and we have tested Starknet's limits such that each svg generation to cost right under the 1,000,000 step limit in Mainnet</p>
+            </div>
+            <div>
+              <h3>Font</h3>
+              <p>We used a custom font type saved on-chain to generate the svg images. </p>
+              </div>
+            <div>
+              <h3>Immutable X ERC721 Standard</h3>
+              <p>The <a href="https://github.com/immutable/imx-starknet/blob/main/immutablex/starknet/token/erc721/presets/ERC721_Full.cairo">Immutable X ERC721 contract</a> includes token metadata that can be interpreted by Starknet wallets. There is also functionality for on-chain royalties using EIP2981. Having these features inherent within the ERC721 contract is important in setting a precedent to be maximally on-chain. </p>
+            </div>
+            <div>
+              <h3>Protostar</h3>
+              <p>Cairo's Foundry, <a href="https://docs.swmansion.com/protostar/">Protostar</a> is a testing framework for smart contract development on Starknet. Tests are written in Cairo with python cheatcodes to help properly test contracts pre-deployment.</p>
+            </div>
+            <div>
+              <h3>Amarna</h3>
+              <p><a href="https://blog.trailofbits.com/2022/04/20/amarna-static-analysis-for-cairo-programs/">Amarna</a> is a static analyzer and linter for Cairo built by Trail of Bits. The tool helps to analyze a host of potential Cairo code issues ranging from problematic felt arithmetic to unchecked under/overflows.</p>
+            </div>
+            <div>
+              <h3>Community Libraries</h3>
+              <p>The Starknet community consistently produces helpful libraries to simplify and strengthen the foundations of developing on Starknet. Penrose used various libraries built by these chads within the ecosystem:</p>
+              <p><a href="https://github.com/apibara/starknet-react">Starknet React</a> by <a href="https://twitter.com/apibara_web3">Apibara</a></p>
+              <p><a href="https://github.com/gaetbout/starknet-array-manipulation">Array Manipulation</a> and <a href="https://github.com/gaetbout/starknet-felt-packing">Felt Packing</a> by <a href="https://twitter.com/gaetbout">Gaetbout</a></p>
+              <p><a href="https://github.com/topology-gg/caistring">Caistring</a> by <a href="https://twitter.com/topology_gg">Topology</a></p>
+              <p><a href="https://github.com/influenceth/cairo-math-64x61">Fixed-Point Math</a> by <a href="https://twitter.com/influenceth">Influence</a></p>
+            </div>
+          </div>
         </section>
 
         <section className="more">
