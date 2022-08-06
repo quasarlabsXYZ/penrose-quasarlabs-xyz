@@ -97,7 +97,7 @@ const CrispChart = () => {
                                         }}
                                     >
                                         <div key={slice.points[0].id} style={{ color: slice.points[0].serieColor, fontSize: 13, padding: '3px 0', }}>
-                                            <strong>Blcok No.:</strong> {Number(slice.points[0].data.x)}
+                                            <strong>Block No.:</strong> {Number(slice.points[0].data.x)}
                                         </div>
                                         {slice.points.map(point => (
                                             <>

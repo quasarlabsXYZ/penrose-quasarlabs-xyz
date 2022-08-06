@@ -37,10 +37,10 @@ const Home: NextPage = (props) => {
             Penrose is the first fully on-chain generative art experiment on Starknet built by <a href="https://www.quasarlabs.xyz">Quasar Labs</a>. The idea is inspired by the legendary <a href="https://www.larvalabs.com/autoglyphs#:~:text=Autoglyphs%20are%20the%20first%20%E2%80%9Con,running%20on%20the%20Ethereum%20blockchain.">Autoglyphs</a>.
           </p>
           <p>
-            Each Penrose is a unique artwork generated on-chain and bootstrapped using the <a href="https://www.paradigm.xyz/2022/01/constant-rate-issuance-sales-protocol">Constant Rate Issuance Sales Protocol (CRISP)</a> mechanism designed by the paradigm research team.
+            Each Penrose is a unique artwork generated on-chain and bootstrapped using the <a href="https://www.paradigm.xyz/2022/01/constant-rate-issuance-sales-protocol">Constant Rate Issuance Sales Protocol (CRISP)</a> mechanism designed by the <a href="https://www.paradigm.xyz/team">Paradigm research team</a>..
           </p>
           <p>
-            All implemented in <a href="https://www.cairo-lang.org/docs/">Cairo</a> and <span className="bg-yellow-400 text-black">starkpilled</span>. :)
+            All implemented in <a href="https://www.cairo-lang.org/docs/">Cairo</a> and <span className="bg-yellow-400 text-black">starkpilled</span>.
           </p>
           <p className="text-xs text-gray-500 mt-5">
             * Penrose is a highly experimental project and all operations are processed on-chain, there is no way to reverse or undo any transaction. Please be cautious and do your own research before making any operation or financial decision.
@@ -87,10 +87,6 @@ const Home: NextPage = (props) => {
             <div>
               <h3>Open-source Primitives</h3>
               <p>Built by <a href="https://www.quasarlabs.xyz">Quasar Labs</a>, Penrose is the first implementation of on-chain generative art and CRISP pricing mechanism in Cairo and on Starknet. Everything is <a href="https://github.com/QuasarLabsXYZ">fully open-sourced</a> for the builders and researchers exploring the undiscovered potentials of the awesome Starknet.</p>
-            </div>
-
-            <div>
-              <p className='text-white italic'>Can you <span className='text-orange-300 bg-gray-700 rounded-md'>:felt*</span> the magic, anon?</p>
             </div>
           </div>
 
