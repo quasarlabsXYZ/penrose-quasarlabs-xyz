@@ -7,7 +7,7 @@ const formatData = (priceHistory: any) => {
         {
             "id": "priceHistory",
             "data": priceHistory.map((item: any) => {
-                if (!item.block && !item.price) return;
+                if (!item.block && (!item.price && item.price !== 0)) return;
                 return {
                     "x": item.blockNumber,
                     "y": item.price
@@ -28,6 +28,7 @@ const CrispChart = () => {
             const results = formatData(priceHistory);
             setPriceHistory(priceHistory);
             setChartData(results);
+            console.log(results);
         }
         fetchData();
         const interval = setInterval(fetchData, 10000);
