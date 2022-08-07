@@ -37,7 +37,7 @@
     @apply mb-3;
   }
 
-  p {
+  p, li {
     @apply mb-3;
     @apply text-gray-400;
   }

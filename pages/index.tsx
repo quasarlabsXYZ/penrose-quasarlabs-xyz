@@ -118,12 +118,13 @@ const Home: NextPage = (props) => {
             <div>
               <h3>Community Libraries</h3>
               <p>The Starknet community consistently produces helpful libraries to simplify and strengthen the foundations of developing on Starknet. Penrose used various libraries built by these chads within the ecosystem:</p>
-              <p><a href="https://github.com/0xs34n/starknet.js">Starknet.js</a> by <a href="https://twitter.com/0xs34n">Sean</a> and all the open-source contributors</p>
-              <p><a href="https://github.com/apibara/starknet-react">Starknet React</a> by <a href="https://twitter.com/aspectdotco">Apibara</a></p>
-              <p><a href="https://aspect.readme.io/reference/intro">Aspect API</a> by <a href="https://twitter.com/aspectdotco">Aspect</a></p>
-              <p><a href="https://github.com/gaetbout/starknet-array-manipulation">Array Manipulation</a> and <a href="https://github.com/gaetbout/starknet-felt-packing">Felt Packing</a> by <a href="https://twitter.com/gaetbout">Gaetbout</a></p>
-              <p><a href="https://github.com/topology-gg/caistring">Caistring</a> by <a href="https://twitter.com/topology_gg">Topology</a></p>
-              <p><a href="https://github.com/influenceth/cairo-math-64x61">Fixed-Point Math</a> by <a href="https://twitter.com/influenceth">Influence</a></p>
+              <br />
+              <li><a href="https://github.com/0xs34n/starknet.js">Starknet.js</a> by <a href="https://twitter.com/0xs34n">Sean</a> and all the open-source contributors</li>
+              <li><a href="https://github.com/apibara/starknet-react">Starknet React</a> by <a href="https://twitter.com/aspectdotco">Apibara</a></li>
+              <li><a href="https://aspect.readme.io/reference/intro">Aspect API</a> by <a href="https://twitter.com/aspectdotco">Aspect</a></li>
+              <li><a href="https://github.com/gaetbout/starknet-array-manipulation">Array Manipulation</a> and <a href="https://github.com/gaetbout/starknet-felt-packing">Felt Packing</a> by <a href="https://twitter.com/gaetbout">Gaetbout</a></li>
+              <li><a href="https://github.com/topology-gg/caistring">Caistring</a> by <a href="https://twitter.com/topology_gg">Topology</a></li>
+              <li><a href="https://github.com/influenceth/cairo-math-64x61">Fixed-Point Math</a> by <a href="https://twitter.com/influenceth">Influence</a></li>
             </div>
           </div>
         </section>
