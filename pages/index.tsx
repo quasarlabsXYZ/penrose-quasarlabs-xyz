@@ -102,7 +102,7 @@ const Home: NextPage = (props) => {
             <div>
               <h3>Font</h3>
               <p>We used a custom font type saved on-chain to generate the svg images. </p>
-              </div>
+            </div>
             <div>
               <h3>Immutable X ERC721 Standard</h3>
               <p>The <a href="https://github.com/immutable/imx-starknet/blob/main/immutablex/starknet/token/erc721/presets/ERC721_Full.cairo">Immutable X ERC721 contract</a> includes token metadata that can be interpreted by Starknet wallets. There is also functionality for on-chain royalties using EIP2981. Having these features inherent within the ERC721 contract is important in setting a precedent to be maximally on-chain. </p>
@@ -118,7 +118,9 @@ const Home: NextPage = (props) => {
             <div>
               <h3>Community Libraries</h3>
               <p>The Starknet community consistently produces helpful libraries to simplify and strengthen the foundations of developing on Starknet. Penrose used various libraries built by these chads within the ecosystem:</p>
-              <p><a href="https://github.com/apibara/starknet-react">Starknet React</a> by <a href="https://twitter.com/apibara_web3">Apibara</a></p>
+              <p><a href="https://github.com/0xs34n/starknet.js">Starknet.js</a> by <a href="https://twitter.com/0xs34n">Sean</a> and all the open-source contributors</p>
+              <p><a href="https://github.com/apibara/starknet-react">Starknet React</a> by <a href="https://twitter.com/aspectdotco">Apibara</a></p>
+              <p><a href="https://aspect.readme.io/reference/intro">Aspect API</a> by <a href="https://twitter.com/aspectdotco">Aspect</a></p>
               <p><a href="https://github.com/gaetbout/starknet-array-manipulation">Array Manipulation</a> and <a href="https://github.com/gaetbout/starknet-felt-packing">Felt Packing</a> by <a href="https://twitter.com/gaetbout">Gaetbout</a></p>
               <p><a href="https://github.com/topology-gg/caistring">Caistring</a> by <a href="https://twitter.com/topology_gg">Topology</a></p>
               <p><a href="https://github.com/influenceth/cairo-math-64x61">Fixed-Point Math</a> by <a href="https://twitter.com/influenceth">Influence</a></p>
