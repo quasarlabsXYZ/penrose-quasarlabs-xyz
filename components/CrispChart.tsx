@@ -55,7 +55,8 @@ const CrispChart = () => {
                                 min: 0,
                                 max: 'auto',
                             }}
-                            // colors={{ scheme: 'purples' }}
+                            enableCrosshair={true}
+                            // crosshairType="cross"
                             theme={
                                 {
                                     textColor: "#d4d4d8",
@@ -68,6 +69,13 @@ const CrispChart = () => {
                                         line: {
                                             stroke: "#BDBDBD",
                                         }
+                                    },
+                                    crosshair: {
+                                        line: {
+                                            stroke: '#ffffff',
+                                            strokeWidth: 1,
+                                            strokeOpacity: 0.35,
+                                        },
                                     }
                                 }
                             }
@@ -102,10 +110,10 @@ const CrispChart = () => {
                                         </div>
                                         {slice.points.map(point => (
                                             <>
-                                                <div key={point.id} style={{ color: "#dbdbdb", fontSize: 12, padding: '3px 0', }}>
+                                                <div key={point.id + "tokenId"} style={{ color: "#dbdbdb", fontSize: 12, padding: '3px 0', }}>
                                                     <strong>TokenId:</strong> #{Number(point.id.replace('priceHistory.', '')) + 1}
                                                 </div>
-                                                <div key={point.id} style={{ color: "#BDBDBD", fontSize: 11, padding: '3px 0', }}>
+                                                <div key={point.id + "price"} style={{ color: "#BDBDBD", fontSize: 11, padding: '3px 0', }}>
                                                     <strong>Price:</strong> {formatEthPrice(Number(point.data.y))}
                                                 </div>
                                             </>
