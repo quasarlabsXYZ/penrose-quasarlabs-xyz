@@ -19,7 +19,11 @@ export const StatsAndMint = (props: any) => {
 
   useEffect(() => {
     if (!Data) return;
-    setApproveAmount(bnToUint256(BigInt(Data.currentPrice * 1e18)));
+    setApproveAmount(
+      bnToUint256(
+        BigInt(Math.ceil(Data.currentPrice * 1e18))
+      )
+    );
   }, [Data]);
 
   const { loading, error, execute } = useStarknetExecute({
