@@ -1,9 +1,9 @@
+import fetch from "cross-fetch";
 import dotenv from 'dotenv';
 import { MongoClient } from "mongodb";
 import { Abi, Contract } from "starknet";
 import penroseAbi from "../abi/penrose.json";
 import { PENROSE_CONTRACT_ADDRESS } from "../constants";
-import fetch from "cross-fetch";
 
 global.fetch = fetch;
 dotenv.config();
@@ -65,7 +65,7 @@ async function start() {
   const START = true;
   while (START) {
     await updateHistory();
-    console.log("Sleeping for 10 seconds...");
+    console.log("Nothing to be fetched, sleeping for 10 seconds...");
     await new Promise(resolve => setTimeout(resolve, 10000));
   }
 }

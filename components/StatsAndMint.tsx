@@ -1,5 +1,5 @@
 import { useStarknet, useStarknetExecute } from "@starknet-react/core";
-import { useContext, useMemo } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { makeAddress } from "starknet/dist/utils/stark";
 import { bnToUint256 } from "starknet/dist/utils/uint256";
 import { ETH_TESTNET_ADDRESS, PENROSE_CONTRACT_ADDRESS } from "../constants";
@@ -15,8 +15,13 @@ export const StatsAndMint = (props: any) => {
   const Data = useContext(DataContext)
   const { account, connectors } = useStarknet();
 
-  const approveAmount = bnToUint256(BigInt(69420e18)); // approve for an absurdly large amount, revoke later
-  const zero = bnToUint256(BigInt(0)); // approve for an absurdly large amount, revoke later
+  const [approveAmount, setApproveAmount] = useState(bnToUint256(BigInt(0)));
+
+  useEffect(() => {
+    if (!Data) return;
+    setApproveAmount(bnToUint256(BigInt(Data.currentPrice * 1e18)));
+  }, [Data]);
+
   const { loading, error, execute } = useStarknetExecute({
     calls: [
       {
@@ -28,11 +33,6 @@ export const StatsAndMint = (props: any) => {
         contractAddress: PENROSE_CONTRACT_ADDRESS,
         entrypoint: 'mint',
         calldata: []
-      },
-      {
-        contractAddress: ETH_TESTNET_ADDRESS,
-        entrypoint: 'approve',
-        calldata: [makeAddress(PENROSE_CONTRACT_ADDRESS), zero.low.toString(), zero.high.toString()]
       },
     ],
     metadata: { message: "hello" }
