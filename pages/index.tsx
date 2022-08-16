@@ -41,7 +41,7 @@ const Home: NextPage = (props) => {
           </p>
           <p>
             All implemented in <a href="https://www.cairo-lang.org/docs/">Cairo</a> and <span className="bg-yellow-400 text-black">starkpilled</span>.
-          </p>
+          </p>x
           <p className="text-xs text-gray-500 mt-5">
             * Penrose is a highly experimental project and all operations are processed on-chain, there is no way to reverse or undo any transaction. Please be cautious and do your own research before making any operation or financial decision.
           </p>
@@ -97,14 +97,14 @@ const Home: NextPage = (props) => {
           <div className='grid gap-5'>
             <div>
               <h3>Cairo</h3>
-              <p>As there are no loops in Cairo, Penrose is generated through recursions. Symbols are chosen in each recursive call, and we have tested Starknet's limits such that each svg generation to cost right under the 1,000,000 step limit in Mainnet</p>
+              <p>As there are no loops in Cairo, Penrose is generated through a multitude of recursive calls: each NFT in the collection uses just under 1,000,000 steps, the step count limit for Starknet.</p>
             </div>
             <div>
               <h3>Font</h3>
-              <p>We used a custom font type saved on-chain to generate the svg images. </p>
+              <p>Penrose uses a custom font type saved on-chain to generate each individual NFT. The custom font is mapped to specific characters and hosted on-chain.</p>
             </div>
             <div>
-              <h3>Immutable X ERC721 Standard</h3>
+              <h3>Immutable-X ERC721 Standard</h3>
               <p>The <a href="https://github.com/immutable/imx-starknet/blob/main/immutablex/starknet/token/erc721/presets/ERC721_Full.cairo">Immutable X ERC721 contract</a> includes token metadata that can be interpreted by Starknet wallets. There is also functionality for on-chain royalties using EIP2981. Having these features inherent within the ERC721 contract is important in setting a precedent to be maximally on-chain. </p>
             </div>
             <div>
